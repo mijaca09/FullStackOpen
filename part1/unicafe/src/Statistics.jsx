@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import StatisticLine from './StatisticLine'
 
 const Statistics = (props) => {
   const { good, neutral, bad } = props
@@ -14,21 +14,26 @@ const Statistics = (props) => {
       </div>
     )
   }
+
   return (
     <div>
       <h1>statistics</h1>
-
-      <p>good {good}</p>
-      <p>neutral {neutral}</p>
-      <p>bad {bad}</p>
-      
-      <p>all {all}</p>
-      <p>average {average.toFixed(1)}</p>
-      <p>positive {positive.toFixed(1)} %</p>
-    
+      <StatisticLine text="good" value={good} />
+      <StatisticLine text="neutral" value={neutral} />
+      <StatisticLine text="bad" value={bad} />
+      <StatisticLine text="all" value={all} />
+      <StatisticLine text="average" value={average.toFixed(1)} />
+      <StatisticLine text="positive" value={positive.toFixed(1) + ' %'} />
     </div>
   )
 }
 
+import PropTypes from 'prop-types'
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+}
 
 export default Statistics
